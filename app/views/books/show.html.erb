@@ -52,7 +52,7 @@
           </tr>
           <tr><td>
              <% @book.book_comments.each do |book_comment| %>
-            <%= link_to book_comment.user.name, user_path(current_user) %>
+            <%= link_to book_comment.user.name, user_path(book_comment.user) %>
              <% end %>
           </td></tr>
       </table>
