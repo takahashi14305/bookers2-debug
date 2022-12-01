@@ -1,1 +1,2 @@
-(".favorite-btn").html("<%= j(render 'book_comment/comment', book: @book) %>");
+$("#book_<% @book.id %>").html("<%= j(render 'book_comments/comment', book: @book ) %>");
+$("textarea").val("")
