@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
     @book = Book.find(params[:id])
@@ -20,11 +22,11 @@ class BooksController < ApplicationController
         a.favorited_users.includes(:favorites).where(created_at: from...to).size
       }
     #@books = Book.all
-    @book = Book.new
-    @book_detail = Book.find(params[:book_id])
-    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
-      current_user.view_counts.create(book_id: @book_detail.id)
-    end
+   @book = Book.new
+    #@book_detail = Book.find(params[:book_id])
+    #unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+    #  current_user.view_counts.create(book_id: @book_detail.id)
+    #end
   end
 
   def create
